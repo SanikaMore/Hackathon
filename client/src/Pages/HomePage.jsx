@@ -74,6 +74,37 @@ const SearchIconWrapper = styled("div")(({ theme }) => ({
   justifyContent: "center",
 }));
 
+const getTagColor = (easeOfProject) => {
+  switch (easeOfProject) {
+    case 1:
+    case 2:
+      return 'green';
+    case 3:
+    case 4:
+      return 'yellow';
+    case 5:
+      return 'red';
+    default:
+      return 'gray'; // default color for unknown values
+  }
+};
+
+const getTagLabel = (easeOfProject) => {
+  switch (easeOfProject) {
+    case 1:
+    case 2:
+      return 'Beginner';
+    case 3:
+    case 4:
+      return 'Medium';
+    case 5:
+      return 'Advanced';
+    default:
+      return 'Unknown';
+  }
+};
+
+
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: "inherit",
   "& .MuiInputBase-input": {
@@ -324,21 +355,34 @@ const HomePage = () => {
           </div>
         </div>
 
-        <div className="github-repo-cards">
+        
+        
+        <div className="post-outer">
+          <div className="post-wrapper">
+          <div className="github-repo-cards">
           {githubRepos.map(repo => (
             <div className="github-repo-card" key={repo._id}>
-<img src="https://tse4.mm.bing.net/th?id=OIP.1d6tBbNiJTFQNEK_k0sSjQHaFj&pid=Api&P=0&h=180" alt="Repo" />
               <div>
                 <h3>{repo.owner}</h3>
                 <p>{repo.repo_name}</p>
                 <p>Ease of Project: {repo.easeOfProject}</p>
+                <div className="tag" style={{ backgroundColor: getTagColor(repo.easeOfProject) }}>
+                  {getTagLabel(repo.easeOfProject)}
+                </div>
               </div>
             </div>
           ))}
         </div>
-        
-        <div className="post-outer">
-          <div className="post-wrapper">
+
+
+
+
+
+
+
+
+
+
             {posts.length === 0 ? (
               <p className="no-posts-found">No posts found!</p>
             ) : (

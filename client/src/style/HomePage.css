@@ -82,6 +82,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    left: 500px;
 }
 
 .card-outer{
@@ -197,3 +198,76 @@
 #post-owner-img{
     cursor: pointer;
 }
+
+/* Add these styles to your existing styles or create a new CSS file */
+.github-repo-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin: auto;
+  }
+  
+  .github-repo-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    max-width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .github-repo-card:hover {
+    transform: scale(1.05);
+  }
+  
+  .github-repo-card img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-right: 16px;
+  }
+  
+  .github-repo-card div {
+    flex-grow: 1;
+  }
+  
+  .github-repo-card h3 {
+    margin-bottom: 8px;
+    font-size: 1.2rem;
+    color: #333;
+  }
+  
+  .github-repo-card p {
+    margin: 0;
+    font-size: 1rem;
+    color: #555;
+  }
+  
+  /* Add more styles as needed */
+  
+  .tag {
+    display: inline-block;
+    padding: 5px 10px;
+    color: white;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-top: 5px;
+  }
+  
+  /* Add specific styles for each color */
+  .tag.green {
+    background-color: #4caf50; /* Green */
+  }
+  
+  .tag.yellow {
+    background-color: #ffeb3b; /* Yellow */
+  }
+  
+  .tag.red {
+    background-color: #f44336; /* Red */
+  }
+  
+  /* Add more styles as needed */
+  
