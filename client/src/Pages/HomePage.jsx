@@ -8,7 +8,7 @@ import {
 import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import { Link } from 'react-router-dom';
-
+import Recommendations from "../components/Recommendations";
 import CloseRounded from "@mui/icons-material/CloseRounded";
 import {
   Alert,
@@ -216,6 +216,7 @@ const HomePage = () => {
     setLoading(false);
   }, [selectedTags, allPostsData, searchField, sortCriteria]);
 
+  const userId = '85';
 
   useEffect(() => {
     axios.get('http://localhost:5000/post/getGithub')
@@ -674,6 +675,9 @@ const HomePage = () => {
             )}
           </div>
         </div>
+        
+
+        <Recommendations userId={userId}/>
       </div>
     </div>
   );

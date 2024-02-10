@@ -1,12 +1,11 @@
 // Recommendations.jsx
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types'; // Import PropTypes for prop validation
 import { useParams } from 'react-router-dom';
 
-const Recommendations = () => {
+const Recommendations = ({ userId }) => {
   const [recommendations, setRecommendations] = useState({});
-  const { userId } = useParams();
 
   useEffect(() => {
     const fetchRecommendations = async () => {
@@ -29,9 +28,6 @@ const Recommendations = () => {
         const top5RecommendationsObj = Object.fromEntries(top5Recommendations);
 
         setRecommendations(top5RecommendationsObj);
-        
-
-        
       } catch (error) {
         console.error('Error fetching recommendations:', error);
       }
@@ -42,7 +38,7 @@ const Recommendations = () => {
 
   return (
     <div>
-      <h2>Top 5 Recommendations for User {userId}</h2>
+      <h2>Top 5 Recommendations for You</h2>
       <ul>
         {Object.entries(recommendations).map(([tech, score]) => (
           <li key={tech}>{tech}: {score}</li>
@@ -50,6 +46,11 @@ const Recommendations = () => {
       </ul>
     </div>
   );
+};
+
+// Prop validation using PropTypes
+Recommendations.propTypes = {
+  userId: PropTypes.string.isRequired,
 };
 
 export default Recommendations;
