@@ -1,3 +1,4 @@
+import axios from "axios";
 import SearchIcon from "@mui/icons-material/Search";
 import React, { useEffect, useState } from "react";
 import {
@@ -105,6 +106,7 @@ const HomePage = () => {
   const [searchField, setSearchField] = useState("");
   const [sortCriteria, setSortCriteria] = useState("most_recent");
   const [fullDescriptionPost, setFullDescriptionPost] = useState(null);
+  const [githubRepos, setGithubRepos] = useState([]);
 
   const [loading, setLoading] = useState(false);
 
@@ -142,12 +144,13 @@ const HomePage = () => {
     setLoading(true);
     setPosts([]);
 
-    if (selectedTags !== [])
-      setPosts(() =>
-        allPostsData.filter(({ postData }) =>
-          selectedTags.every((tag) => postData.tags.includes(tag))
-        )
-      );
+    if (selectedTags.length !== 0)
+    setPosts(() =>
+      allPostsData.filter(({ postData }) =>
+        selectedTags.every((tag) => postData.tags.includes(tag))
+      )
+    );
+  
 
     if (searchField !== "")
       setPosts((state) =>
@@ -181,6 +184,20 @@ const HomePage = () => {
     setLoading(false);
   }, [selectedTags, allPostsData, searchField, sortCriteria]);
 
+
+  useEffect(() => {
+    axios.get('http://localhost:5000/post/getGithub')
+      .then(response => {
+        setGithubRepos(response.data);
+        console.log(response.data)
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error(error);
+        console.log(error);
+        setLoading(false);
+      });
+  }, []);
   return (
     <div className="home-page-outer">
       {loading && <CircularProgress style={{ width: 40, height: 40, position: "absolute", top: "50%", left: "50%", color: "#1772cd" }} />}
@@ -306,6 +323,20 @@ const HomePage = () => {
             </div>
           </div>
         </div>
+
+        <div className="github-repo-cards">
+          {githubRepos.map(repo => (
+            <div className="github-repo-card" key={repo._id}>
+<img src="https://tse4.mm.bing.net/th?id=OIP.1d6tBbNiJTFQNEK_k0sSjQHaFj&pid=Api&P=0&h=180" alt="Repo" />
+              <div>
+                <h3>{repo.owner}</h3>
+                <p>{repo.repo_name}</p>
+                <p>Ease of Project: {repo.easeOfProject}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+        
         <div className="post-outer">
           <div className="post-wrapper">
             {posts.length === 0 ? (
