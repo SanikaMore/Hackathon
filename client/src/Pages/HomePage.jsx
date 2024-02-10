@@ -7,7 +7,7 @@ import {
 } from "../Services/AppApi";
 import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
-
+import Recommendations from "../components/Recommendations";
 import CloseRounded from "@mui/icons-material/CloseRounded";
 import {
   Alert,
@@ -215,6 +215,7 @@ const HomePage = () => {
     setLoading(false);
   }, [selectedTags, allPostsData, searchField, sortCriteria]);
 
+  const userId = '85';
 
   useEffect(() => {
     axios.get('http://localhost:5000/post/getGithub')
@@ -384,7 +385,7 @@ const HomePage = () => {
 
 
             {posts.length === 0 ? (
-              <p className="no-posts-found">No posts found!</p>
+              <p className="no-posts-found"></p>
             ) : (
               posts?.map(({ postData, ownerInfo }, idx) => (
                 <Card className="card-outer" key={idx}>
@@ -666,6 +667,9 @@ const HomePage = () => {
             )}
           </div>
         </div>
+        
+
+        <Recommendations userId={userId}/>
       </div>
     </div>
   );
