@@ -45,6 +45,9 @@ const CreatePost = () => {
   const [fetchTagsFunction] = useFetchTagsMutation();
   const [createPostFunc] = useCreatePostMutation();
 
+  // Predefined tags
+  const predefinedTags = ['C', 'C++', 'CSS', 'HTML', 'Java', 'JavaScript', 'Python', 'R', 'SQL', 'Amazon DynamoDB', 'MongoDB', 'MySQL', 'Neo4j', 'Oracle', 'PostgreSQL', 'Redis', 'SQL Server', 'SQLite', 'AWS', 'Firebase', 'Linux', 'Mac OS', 'Angular', 'Django', 'Hadoop', 'Node.js', 'React', 'Spring', 'TensorFlow'];
+
   useEffect(() => {
     fetchTagsFunction().then(async ({ data, error }) => {
       if (error) {
@@ -191,7 +194,7 @@ const CreatePost = () => {
             className="custom-input-field"
             type="text"
             variant="outlined"
-            label="Title"
+            label="Owner Name"
             margin="dense"
             id="input-title"
             required
@@ -203,7 +206,7 @@ const CreatePost = () => {
             className="custom-input-field"
             type="text"
             variant="outlined"
-            label="Description"
+            label="Repository name"
             margin="dense"
             id="input-description"
             multiline
@@ -282,41 +285,40 @@ const CreatePost = () => {
           </div>
         </div>
         <div className="tags-outer">
-          <div className="tags-heading">
-            <div className="tags-title">Select Tags from Below</div>
-            <BootstrapTooltip placement="right" title="Clear Tags">
-              <CloseRoundedIcon
-                style={{
-                  visibility: selectedTags.length > 0 ? "visible" : "hidden",
-                }}
-                onClick={() => setSelectedTags([])}
-                className="clear-icon-tags"
-              />
-            </BootstrapTooltip>
-          </div>
-          <div className="tags-collection">
-            {tags?.map((tag) => (
-              <p
-                onClick={() => {
-                  if (selectedTags.indexOf(tag) === -1)
-                    setSelectedTags((state) => [...state, tag]);
-                  else
-                    setSelectedTags((state) =>
-                      state.filter((all) => all !== tag)
-                    );
-                }}
-                key={tag}
-                className={`tag-representation ${
-                  selectedTags.indexOf(tag) !== -1
-                    ? "selected-tag-representation"
-                    : ""
-                }`}
-              >
-                {tag}
-              </p>
-            ))}
-          </div>
-        </div>
+      <div className="tags-heading">
+        <div className="tags-title">Select Tags from Below</div>
+        <button
+          onClick={() => setSelectedTags([])}
+          className="clear-icon-tags"
+          style={{
+            visibility: selectedTags.length > 0 ? "visible" : "hidden",
+          }}
+        >
+          Clear Tags
+        </button>
+      </div>
+      <div className="tags-collection">
+        {predefinedTags.map((tag) => (
+          <p
+            onClick={() => {
+              // Toggle the tag in selectedTags
+              setSelectedTags((prevTags) =>
+                prevTags.includes(tag)
+                  ? prevTags.filter((selectedTag) => selectedTag !== tag)
+                  : [...prevTags, tag]
+              );
+            }}
+            key={tag}
+            className={`tag-representation ${
+              selectedTags.includes(tag) ? "selected-tag-representation" : ""
+            }`}
+          >
+            {tag}
+          </p>
+        ))}
+      </div>
+    </div>
+
       </div>
     </div>
   );
