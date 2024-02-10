@@ -1,4 +1,4 @@
-[
+exports.data = [
     {
         "owner": "torvalds",
         "repo_name": "linux",

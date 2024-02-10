@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { useSignUpUserMutation } from "../Services/AppApi";
 // import google from "../static/google.png";
 import "../style/Signup.css";
+import { useLoginUserMutation } from "../Services/AppApi";
+
 
 const Signup = () => {
   const [inputName, setInputName] = useState("");
@@ -14,6 +16,7 @@ const Signup = () => {
   const [response, setResponse] = useState(false);
   const [isError, setIsError] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
+  const [loginFunction] = useLoginUserMutation();
 
   const navigate = useNavigate();
 
@@ -43,6 +46,20 @@ const Signup = () => {
       if (data) {
         setIsError(false);
         setAlertMessage(data);
+        loginFunction({
+          index: inputName,
+          password: inputPassword,
+        }).then(async ({ data, error }) => {
+          if (error) {
+            setIsError(true);
+            setAlertMessage(error.data);
+            setResponse(true);
+            setDisableSubmit(false);
+          } else {
+            localStorage.setItem("token", data.token);
+            navigate('/edit/profile')
+          }
+        });
       } else {
         setIsError(true);
         setAlertMessage(error.data);

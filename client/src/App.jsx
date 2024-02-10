@@ -7,7 +7,7 @@ import Response from "./Pages/Response";
 import HomePage from "./Pages/HomePage";
 import ForgotPassword from "./Pages/ForgotPassword";
 import ResetPassword from "./Pages/ResetPassword";
-import CreatePost from "./components/CreatePost";
+// import CreatePost from "./components/CreatePost";
 import Recommendations from './Pages/Recommendations';
 
 import { AppContext } from "./context/AppContext";
@@ -39,8 +39,8 @@ function App() {
           {!user && <Route path="/login" element={<Login />} />}
           {user && <Route path="/login" element={<HomePage />} />}
 
-          {!user && <Route path="/create/file" element={<Login />} />}
-          {user && <Route path="/create/file" element={<CreatePost />} />}
+          {/* {!user && <Route path="/create/file" element={<Login />} />}
+          {user && <Route path="/create/file" element={<CreatePost />} />} */}
 
           {user && <Route path="/account" element={<DisplayProfile />} />}
           {!user && <Route path="/account" element={<Login />} />}

@@ -161,7 +161,7 @@ export default function Sidebar() {
               <ListItemText primary={"Home"} sx={{ opacity: open ? 1 : 0 }} />
             </ListItemButton>
           </ListItem>
-          {user && (
+          {/* {user && (
             <ListItem disablePadding sx={{ display: "block" }}>
               <ListItemButton
                 onClick={() => navigate("/create/file")}
@@ -188,7 +188,7 @@ export default function Sidebar() {
                 />
               </ListItemButton>
             </ListItem>
-          )}
+          )} */}
 
           <ListItem disablePadding sx={{ display: "block" }}>
             <ListItemButton
