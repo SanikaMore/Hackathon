@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-
+import { useParams } from 'react-router-dom';
 function GitHubCommits() {
   const [commits, setCommits] = useState([]);
-  const owner = 'SanikaMore';
-  const repo = 'Hackathon';
+  const {owner,repo} = useParams();
   const token = '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';
 
   useEffect(() => {

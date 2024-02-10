@@ -49,7 +49,6 @@ import {
   useAddPostToFavouritesMutation,
   useAddVoteMutation,
 } from "../Services/AppApi";
-import GitHubCommits from "../components/recentCommits";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -301,7 +300,6 @@ const HomePage = () => {
                 </IconButton>
               </Search>
             </div>
-            <GitHubCommits/>
             <div className="search-by-tags-outer">
               <div className="tags-heading">
                 <div className="tags-title">Filter by tags</div>
@@ -363,26 +361,38 @@ const HomePage = () => {
         <div className="post-outer">
           <div className="post-wrapper">
           <div className="github-repo-cards">
-          {githubRepos.map(repo => (
-            <div className="github-repo-card" key={repo._id}>
-                                <Link to ='/repo/owner/repo'>
-              <div>
-                <h3>{repo.owner}</h3>
-                <p>{repo.repo_name}</p>
-                <p>Ease of Project: {repo.easeOfProject}</p>
-                <div className="tag" style={{ backgroundColor: getTagColor(repo.easeOfProject) }}>
-                  {getTagLabel(repo.easeOfProject)}
-                </div>
-              </div>
+  {githubRepos
+    .filter(repo =>
+      selectedTags.length === 0 ||
+      selectedTags.every(tag => repo.languageUsed.includes(tag))
+    )
+    .map(repo => (
+      <div className="github-repo-card" key={repo._id}>
+                                <Link to ={`/repo/${repo.owner}/${repo.repo_name}`}>
+        <div>
+          <h3>{repo.owner}</h3>
+          <p>{repo.repo_name}</p>
+          <p>Ease of Project: {repo.easeOfProject}</p>
+          <div className="tag" style={{ backgroundColor: getTagColor(repo.easeOfProject) }}>
+            {getTagLabel(repo.easeOfProject)}
+          </div>
+          <div className="language-buttons">
+            {repo.languageUsed.map((language, index) => (
+              <button className="language-button" key={index}>
+                {language}
+              </button>
+            ))}
+          </div>
+        </div>
               </Link>
 
-            </div>
-          ))}
-        </div>
+      </div>
+    ))}
+</div>
 
 
             {posts.length === 0 ? (
-              <p className="no-posts-found">No posts found!</p>
+              <p className="no-posts-found"></p>
             ) : (
               posts?.map(({ postData, ownerInfo }, idx) => (
                 <Card className="card-outer" key={idx} >
@@ -390,7 +400,7 @@ const HomePage = () => {
                     className="post-header"
                     title={postData.title.toUpperCase()}
                     subheader={`by ${ownerInfo.name}`}
-                    avatar={
+                      avatar={
                       <img
                         style={{
                           width: "50px",

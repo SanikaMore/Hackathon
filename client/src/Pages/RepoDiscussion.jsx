@@ -7,13 +7,11 @@ import {
   } from "@mui/material";
   import React, { useEffect, useState } from "react";
   import {
-    useFetchAllDoubtsMutation,
-    useFetchTagsMutation,
+    useFetchAllRepoDoubtsMutation,
   } from "../Services/AppApi";
   
   import { useParams } from 'react-router-dom';
-
-
+  import GitHubCommits from "../components/recentCommits";
   import { styled, alpha } from "@mui/material/styles";
   import InputBase from "@mui/material/InputBase";
   
@@ -28,7 +26,7 @@ import {
   
   import { useNavigate } from "react-router-dom";
   import VisibilityRounded from "@mui/icons-material/VisibilityRounded";
-  import DisplayPostComponent from "../components/DisplayPostComponent";
+  import DisplayRepoPostComponent from "../components/DisplayRepoPostComponent";
   // import parse from "html-react-parser";
   
   const Search = styled("div")(({ theme }) => ({
@@ -67,15 +65,16 @@ import {
     const [tags, setTags] = useState([]);
     const [selectedTags, setSelectedTags] = useState([]);
   
-    const [fetchAllDoubtsFunction] = useFetchAllDoubtsMutation();
-    const [fetchTagsFunction] = useFetchTagsMutation();
+    const [fetchRepoDoubts] = useFetchAllRepoDoubtsMutation();
   
     const navigate = useNavigate();
   
     useEffect(() => {
-      fetchAllDoubtsFunction().then(({ data, error }) => {
+      fetchRepoDoubts({owner,repo}).then(({ data, error }) => {
         if (data) {
           setDoubts(data);
+        console.log(doubts)
+
           setAllDoubts(data);
         } else {
           enqueueSnackbar(
@@ -85,39 +84,17 @@ import {
         }
       });
   
-      fetchTagsFunction().then(({ data, error }) => {
-        if (data) setTags(data);
-        else {
-          enqueueSnackbar(
-            "Unable to fetch tags at the moment! Please try again!",
-            { variant: "error", autoHideDuration: 3000 }
-          );
-        }
-      });
-    }, [fetchAllDoubtsFunction, fetchTagsFunction]);
+     
+    }, [fetchRepoDoubts]);
   
-    useEffect(() => {
-      setDoubts(
-        allDoubts?.filter(({ doubtDetails }) =>
-          selectedTags?.every((tag) => doubtDetails?.tags?.includes(tag))
-        )
-      );
-  
-      setDoubts((state) =>
-        state.filter(
-          (doubt) =>
-            doubt?.doubtDetails?.doubtTitle?.toLowerCase()?.includes(searchField?.toLowerCase()) ||
-            doubt?.ownerInfo?.name?.toLowerCase()?.includes(searchField?.toLowerCase())
-        )
-      );
-    }, [selectedTags, allDoubts, searchField]);
   
     return (
       <div className="discuss-outer">
-        {owner}
+            <GitHubCommits/>
+        
         <div className="discuss-wrapper">
           <SnackbarProvider maxSnack={3}></SnackbarProvider>
-          {openPostDialog && <DisplayPostComponent />}
+          {openPostDialog && <DisplayRepoPostComponent />}
           <div className="discuss-main-component">
             <div className="discuss-main-component-wrapper">
               <div className="filtering-outer">
@@ -197,22 +174,24 @@ import {
               </div>
               <div className="doubts-outer">
                 <div className="doubts-wrapper">
-                  {doubts?.map(({ doubtDetails, ownerInfo }, idx) => (
-                    <div key={idx} className="doubt-preview-outer">
+                  {
+                      doubts?.map(( doubtDetails, idx) => (
+                          <div key={idx} className="doubt-preview-outer">
+                        {/* {doubts+"==============="} */}
                       <div className="doubt-preview-wrapper">
                         <div className="dynamic-info">
                           <div className="owner-profile">
                             <Avatar
                               style={{ width: 63, height: 63 }}
-                              src={ownerInfo?.photo}
+                              src={doubtDetails?.ownerInfo?.photo}
                             />
                           </div>
                           <div className="doubt-info">
                             <div className="doubt-title-and-tags-info">
                               <div
-                                onClick={() =>
-                                  navigate(`/doubt?id=${doubtDetails._id}`)
-                                }
+                                // onClick={() =>
+                                //   navigate(`/doubt?id=${ ObjectId("65c72feb3f25db26063cb87e")}`)
+                                // }
                                 className="doubt-title"
                               >
                                 {doubtDetails?.doubtTitle
@@ -227,7 +206,7 @@ import {
                                 className="doubts-tags"
                                 style={{ width: "250px", overflowX: "hidden" }}
                               >
-                                {doubtDetails?.tags?.map((tag, idx) => (
+                                    {doubtDetails?.tags?.map((tag, idx) => (
                                   <Chip
                                     key={idx}
                                     onClick={() => {
@@ -253,7 +232,7 @@ import {
                             </div>
                             <div className="doubt-info">
                               <div className="user-info">
-                                {`${ownerInfo?.name} created at ${new Date(
+                                {`created at ${new Date(
                                   doubtDetails?.createdAt
                                 ).toLocaleDateString()} | ${new Date(
                                   doubtDetails?.createdAt
