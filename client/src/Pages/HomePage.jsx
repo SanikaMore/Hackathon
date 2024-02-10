@@ -1,3 +1,4 @@
+import axios from "axios";
 import SearchIcon from "@mui/icons-material/Search";
 import React, { useEffect, useState } from "react";
 import {
@@ -73,6 +74,37 @@ const SearchIconWrapper = styled("div")(({ theme }) => ({
   justifyContent: "center",
 }));
 
+const getTagColor = (easeOfProject) => {
+  switch (easeOfProject) {
+    case 1:
+    case 2:
+      return 'green';
+    case 3:
+    case 4:
+      return 'yellow';
+    case 5:
+      return 'red';
+    default:
+      return 'gray'; // default color for unknown values
+  }
+};
+
+const getTagLabel = (easeOfProject) => {
+  switch (easeOfProject) {
+    case 1:
+    case 2:
+      return 'Beginner';
+    case 3:
+    case 4:
+      return 'Medium';
+    case 5:
+      return 'Advanced';
+    default:
+      return 'Unknown';
+  }
+};
+
+
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: "inherit",
   "& .MuiInputBase-input": {
@@ -105,6 +137,7 @@ const HomePage = () => {
   const [searchField, setSearchField] = useState("");
   const [sortCriteria, setSortCriteria] = useState("most_recent");
   const [fullDescriptionPost, setFullDescriptionPost] = useState(null);
+  const [githubRepos, setGithubRepos] = useState([]);
 
   const [loading, setLoading] = useState(false);
 
@@ -142,12 +175,13 @@ const HomePage = () => {
     setLoading(true);
     setPosts([]);
 
-    if (selectedTags !== [])
-      setPosts(() =>
-        allPostsData.filter(({ postData }) =>
-          selectedTags.every((tag) => postData.tags.includes(tag))
-        )
-      );
+    if (selectedTags.length !== 0)
+    setPosts(() =>
+      allPostsData.filter(({ postData }) =>
+        selectedTags.every((tag) => postData.tags.includes(tag))
+      )
+    );
+  
 
     if (searchField !== "")
       setPosts((state) =>
@@ -181,6 +215,20 @@ const HomePage = () => {
     setLoading(false);
   }, [selectedTags, allPostsData, searchField, sortCriteria]);
 
+
+  useEffect(() => {
+    axios.get('http://localhost:5000/post/getGithub')
+      .then(response => {
+        setGithubRepos(response.data);
+        console.log(response.data)
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error(error);
+        console.log(error);
+        setLoading(false);
+      });
+  }, []);
   return (
     <div className="home-page-outer">
       {loading && <CircularProgress style={{ width: 40, height: 40, position: "absolute", top: "50%", left: "50%", color: "#1772cd" }} />}
@@ -306,8 +354,35 @@ const HomePage = () => {
             </div>
           </div>
         </div>
+
+        
+        
         <div className="post-outer">
           <div className="post-wrapper">
+          <div className="github-repo-cards">
+          {githubRepos.map(repo => (
+            <div className="github-repo-card" key={repo._id}>
+              <div>
+                <h3>{repo.owner}</h3>
+                <p>{repo.repo_name}</p>
+                <p>Ease of Project: {repo.easeOfProject}</p>
+                <div className="tag" style={{ backgroundColor: getTagColor(repo.easeOfProject) }}>
+                  {getTagLabel(repo.easeOfProject)}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+
+
+
+
+
+
+
+
+
             {posts.length === 0 ? (
               <p className="no-posts-found">No posts found!</p>
             ) : (

@@ -74,7 +74,7 @@ const EditProfile = () => {
     'SQLite',
     'Spring',
     'TensorFlow'
-];
+  ];
 
 
   const handleUpdate = async () => {
@@ -168,6 +168,25 @@ const EditProfile = () => {
           variant: "error",
           autoHideDuration: 3000,
         });
+      let obj = {}
+      let skills = data.data.technicalSkills
+      // console.log(JSON.stringify()+"=============") 
+      for (let i = 0; i < predefinedTags.length; i++) {
+        obj[data[i]] = 0;
+      }
+      for (let i = 0; i < skills.length; i++) {
+        obj[skills[i]] = 1;
+      }
+
+      console.log(JSON.stringify(obj))
+      axios.post("localhost", obj)
+        .then(response => {
+          console.log('Response:', response.data);
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+
 
       setDisableSubmit(false);
       setStatus("Update");

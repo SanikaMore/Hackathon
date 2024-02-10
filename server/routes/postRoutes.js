@@ -4,6 +4,10 @@ const authController = require("./../controllers/authController");
 
 const router = express.Router();
 
+router.route("/github-repos").post( postController.createGitHubRepo);
+router.route("/getGithub").get( postController.getAllRepos);
+
+
 router
   .route("/create")
   .post(authController.protect, postController.createPost);

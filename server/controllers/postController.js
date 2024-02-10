@@ -3,6 +3,83 @@ const Post = require("../models/postModel");
 const User = require("../models/userModel");
 const Doubt = require("../models/doubtModel");
 const Reply = require("../models/replyModel");
+const GitHubRepo = require("../models/githubrepo");
+
+exports.createGitHubRepo = catchAsync(async (req, res) => {
+  const { owner, repo_name, repository_url, easeOfProject, languageUsed } = req.body;
+  console.log()
+  try {
+    const newGitHubRepo = await GitHubRepo.create({
+      owner,
+      repo_name,
+      repository_url,
+      easeOfProject,
+      languageUsed,
+      createdAt: Date.now(),
+      // Other fields if needed...
+    });
+
+    res.status(201).json(newGitHubRepo);
+  } catch (err) {
+    res.status(500).json("Couldn't create GitHubRepo! Please try again!");
+  }
+});
+
+exports.getAllRepos = catchAsync(async (req, res) => {
+  try {
+    const allRepos = await GitHubRepo.find({}); // Find all GitHub repos
+    res.status(200).json(allRepos);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json("Couldn't fetch GitHub repos! Please try again!");
+  }
+});
+
+
+exports.createPost = catchAsync(async (req, res) => {
+  const { title, description, tags, media, user, repository_url, easeOfProject, languages } = req.body;
+
+  try {
+    // Check if it's a GitHubRepo creation or a regular post
+    if (repository_url) {
+      // Creating a GitHubRepo
+      const newGitHubRepo = await GitHubRepo.create({
+        owner: user.name,
+        repo_name: title,
+        repository_url,
+        easeOfProject,
+        languageUsed: languages,
+        createdAt: Date.now(),
+        // Other fields if needed...
+      });
+
+      // Update user's GitHubRepo count
+      user.materialCount += 1;
+      await user.save();
+
+      res.status(201).json(newGitHubRepo);
+    } else {
+      // Creating a regular post
+      const newPost = await Post.create({
+        title: title,
+        description: description,
+        tags: tags,
+        creator: user._id,
+        createdAt: Date.now(),
+        media: media,
+      });
+
+      // Update user's post count
+      user.materialCount += 1;
+      await user.save();
+
+      res.status(201).json(newPost);
+    }
+  } catch (err) {
+    res.status(500).json("Couldn't create post or GitHubRepo! Please try again!");
+  }
+});
+
 
 exports.createPost = catchAsync(async (req, res) => {
   const { title, description, tags, media, user } = req.body;
