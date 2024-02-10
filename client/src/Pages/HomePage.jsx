@@ -7,6 +7,7 @@ import {
 } from "../Services/AppApi";
 import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
+import { Link } from 'react-router-dom';
 
 import CloseRounded from "@mui/icons-material/CloseRounded";
 import {
@@ -48,6 +49,7 @@ import {
   useAddPostToFavouritesMutation,
   useAddVoteMutation,
 } from "../Services/AppApi";
+import GitHubCommits from "../components/recentCommits";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -299,6 +301,7 @@ const HomePage = () => {
                 </IconButton>
               </Search>
             </div>
+            <GitHubCommits/>
             <div className="search-by-tags-outer">
               <div className="tags-heading">
                 <div className="tags-title">Filter by tags</div>
@@ -362,6 +365,7 @@ const HomePage = () => {
           <div className="github-repo-cards">
           {githubRepos.map(repo => (
             <div className="github-repo-card" key={repo._id}>
+                                <Link to ='/repo/owner/repo'>
               <div>
                 <h3>{repo.owner}</h3>
                 <p>{repo.repo_name}</p>
@@ -370,24 +374,18 @@ const HomePage = () => {
                   {getTagLabel(repo.easeOfProject)}
                 </div>
               </div>
+              </Link>
+
             </div>
           ))}
         </div>
-
-
-
-
-
-
-
-
 
 
             {posts.length === 0 ? (
               <p className="no-posts-found">No posts found!</p>
             ) : (
               posts?.map(({ postData, ownerInfo }, idx) => (
-                <Card className="card-outer" key={idx}>
+                <Card className="card-outer" key={idx} >
                   <CardHeader
                     className="post-header"
                     title={postData.title.toUpperCase()}

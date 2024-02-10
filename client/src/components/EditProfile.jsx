@@ -7,7 +7,7 @@ import VisibilityOffRoundedIcon from "@mui/icons-material/VisibilityOffRounded";
 import { useUpdateUserProfileMutation } from "../Services/AppApi";
 
 import { useSelector } from "react-redux";
-
+import axios from "axios";
 import "../style/EditProfile.css";
 import { BootstrapTooltip } from "./Navbar";
 import {
@@ -179,13 +179,13 @@ const EditProfile = () => {
       }
 
       console.log(JSON.stringify(obj))
-      axios.post("localhost", obj)
+      if(false){axios.post("localhost", obj)
         .then(response => {
           console.log('Response:', response.data);
         })
         .catch(error => {
           console.error('Error:', error);
-        });
+        });}
 
 
       setDisableSubmit(false);
