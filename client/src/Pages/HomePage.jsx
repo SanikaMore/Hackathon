@@ -361,19 +361,33 @@ const HomePage = () => {
         <div className="post-outer">
           <div className="post-wrapper">
           <div className="github-repo-cards">
-          {githubRepos.map(repo => (
-            <div className="github-repo-card" key={repo._id}>
-              <div>
-                <h3>{repo.owner}</h3>
-                <p>{repo.repo_name}</p>
-                <p>Ease of Project: {repo.easeOfProject}</p>
-                <div className="tag" style={{ backgroundColor: getTagColor(repo.easeOfProject) }}>
-                  {getTagLabel(repo.easeOfProject)}
-                </div>
-              </div>
-            </div>
-          ))}
+  {githubRepos
+    .filter(repo =>
+      selectedTags.length === 0 ||
+      selectedTags.every(tag => repo.languageUsed.includes(tag))
+    )
+    .map(repo => (
+      <div className="github-repo-card" key={repo._id}>
+        <div>
+          <h3>{repo.owner}</h3>
+          <p>{repo.repo_name}</p>
+          <p>Ease of Project: {repo.easeOfProject}</p>
+          <div className="tag" style={{ backgroundColor: getTagColor(repo.easeOfProject) }}>
+            {getTagLabel(repo.easeOfProject)}
+          </div>
+          <div className="language-buttons">
+            {repo.languageUsed.map((language, index) => (
+              <button className="language-button" key={index}>
+                {language}
+              </button>
+            ))}
+          </div>
         </div>
+      </div>
+    ))}
+</div>
+
+
 
 
 

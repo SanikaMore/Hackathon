@@ -268,6 +268,58 @@
   .tag.red {
     background-color: #f44336; /* Red */
   }
+  .language-buttons {
+    margin-top: 10px;
+  }
+  
+  .language-button {
+    background-color: #3498db;
+    color: #fff;
+    padding: 5px 10px;
+    margin-right: 5px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  /* Add this CSS code to your existing styles */
+.tag-representation {
+    /* Your existing styles for unselected tags */
+    cursor: pointer;
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .selected-tag-representation {
+    /* Styles for selected tags */
+    background-color: aqua;
+    color: white; /* Set the text color for better visibility */
+  }
+  
+  /* Add this style for the clear icon */
+  .clear-icon-tags {
+    cursor: pointer;
+  }
+  
+  /* Add this style for the language buttons in the github repo cards */
+  .language-button {
+    background-color: #1772cd;
+    color: white;
+    padding: 5px 10px;
+    margin-right: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  /* Style for language buttons when clicked */
+  .language-button.clicked {
+    background-color: aqua;
+    color: black; /* Set the text color for better visibility */
+  }
+  
+  /* Add more styles as needed */
   
   /* Add more styles as needed */
   
