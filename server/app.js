@@ -9,11 +9,10 @@ const cors = require("cors");
 var morgan = require("morgan");
 
 const tags = [
-  'C++', 'Java', 'Python', 'Depth-First-Search', 'Breadth-First-Search',
-  'Linked-List', 'Two-Pointer', 'Dynamic Programming', 'Hashmap', 'Array',
-  'String', 'Tree', 'Graph', 'Bit-Manipulation', 'Sorting', 'Trie', 'Math',
-  'Backtracking', 'Divide and Conquer', 'Stack', 'Queue', 'Matrix', 'Siding Window',
-  'Two Pointers', 'Prefix Sum'
+  'C', 'C++', 'CSS', 'HTML', 'Java', 'JavaScript', 'Python', 'R', 'SQL',
+  'Amazon DynamoDB', 'MongoDB', 'MySQL', 'Neo4j', 'Oracle', 'PostgreSQL',
+  'Redis', 'SQL Server', 'SQLite', 'AWS', 'Firebase', 'Linux', 'Mac OS',
+  'Angular', 'Django', 'Hadoop', 'Node.js', 'React', 'Spring', 'TensorFlow'
 ];
 
 const app = express();

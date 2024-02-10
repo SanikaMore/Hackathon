@@ -8,6 +8,7 @@ import HomePage from "./Pages/HomePage";
 import ForgotPassword from "./Pages/ForgotPassword";
 import ResetPassword from "./Pages/ResetPassword";
 import CreatePost from "./components/CreatePost";
+import Recommendations from './Pages/Recommendations';
 
 import { AppContext } from "./context/AppContext";
 import { useSelector } from "react-redux";
@@ -55,6 +56,7 @@ function App() {
 
           <Route path="/forgot" element={<ForgotPassword />} />
           <Route path="/new/password" element={<ResetPassword />} />
+          <Route path="/recommendations/:userId" element={<Recommendations />} />
 
           <Route path="/response" element={<Response />} />
         </Routes>
