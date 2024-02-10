@@ -44,7 +44,37 @@ const EditProfile = () => {
   const [disableSubmit, setDisableSubmit] = useState(false);
 
   const [updateProfileFunction] = useUpdateUserProfileMutation();
-  const predefinedTags = ['C', 'C++', 'CSS', 'HTML', 'Java', 'JavaScript', 'Python', 'R', 'SQL', 'Amazon DynamoDB', 'MongoDB', 'MySQL', 'Neo4j', 'Oracle', 'PostgreSQL', 'Redis', 'SQL Server', 'SQLite', 'AWS', 'Firebase', 'Linux', 'Mac OS', 'Angular', 'Django', 'Hadoop', 'Node.js', 'React', 'Spring', 'TensorFlow'];
+  const predefinedTags = [
+    'Amazon DynamoDB',
+    'Angular',
+    'AWS',
+    'C',
+    'C++',
+    'CSS',
+    'Django',
+    'Firebase',
+    'Hadoop',
+    'HTML',
+    'Java',
+    'JavaScript',
+    'Linux',
+    'Mac OS',
+    'MongoDB',
+    'MySQL',
+    'Neo4j',
+    'Node.js',
+    'Oracle',
+    'PostgreSQL',
+    'Python',
+    'R',
+    'React',
+    'Redis',
+    'SQL',
+    'SQL Server',
+    'SQLite',
+    'Spring',
+    'TensorFlow'
+];
 
 
   const handleUpdate = async () => {

@@ -7,7 +7,13 @@ const AppError = require("./utils/appError");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 var morgan = require("morgan");
+const { getCommitsByUserAndRepo } = require("./controllers/getCommitsbyUser");
+const { Octokit } = require("@octokit/core");
 
+
+const octokit = new Octokit({
+  auth: process.env.GITHUB_TOKEN
+})
 const tags = [
   'C', 'C++', 'CSS', 'HTML', 'Java', 'JavaScript', 'Python', 'R', 'SQL',
   'Amazon DynamoDB', 'MongoDB', 'MySQL', 'Neo4j', 'Oracle', 'PostgreSQL',
@@ -30,12 +36,12 @@ express.urlencoded({ extended: false });
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
-
-module.exports = app;
+module.exports = {app}; 
 
 app.use("/user", userRoutes);
 app.use("/post", postRoutes);
 app.use("/doubts", doubtRoutes);
+app.use("/user",getCommitsByUserAndRepo(octokit));
 
 app.get("/tags", async (req, res) => {
   res.status(200).json(tags);
@@ -49,10 +55,14 @@ app.all("*", (req, res, next) => {
 app.use((err, req, res, next) => {
   err.statusCode = err.statusCode || 500;
   err.status = err.status || "error";
-
+  
   res.status(err.statusCode).json({
     status: err.status,
     message: err.message,
     stack: err.stack,
   });
+});
+
+app.listen(5000, () => {
+  console.log(`Server is running on 5000`);
 });
