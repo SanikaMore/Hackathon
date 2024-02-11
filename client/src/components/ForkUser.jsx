@@ -4,8 +4,8 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
 export const ForkUser = () =>{
-//   const { owner, repo } = useParams();
-const [owner,repo] = ['krishnan472003','to-do-list']
+   const { owner, repo } = useParams();
+//const [owner,repo] = ['krishnan472003','to-do-list']
   const handleClick = async() => {
     try {
       const response = await axios.post(`https://api.github.com/repos/${owner}/${repo}/forks`, null, {
