@@ -377,8 +377,8 @@ const HomePage = () => {
       <div className="github-repo-card" key={repo._id}>
                                 <Link to ={`/repo/${repo.owner}/${repo.repo_name}`}>
         <div>
-          <h3>{repo.owner}</h3>
-          <p>{repo.repo_name}</p>
+          <h4>{repo.owner}</h4>
+          <h3>{repo.repo_name}</h3>
           <p>Ease of Project: {repo.easeOfProject}</p>
           <div className="tag" style={{ backgroundColor: getTagColor(repo.easeOfProject) }}>
             {getTagLabel(repo.easeOfProject)}
