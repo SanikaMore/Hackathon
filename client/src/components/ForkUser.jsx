@@ -5,12 +5,12 @@ import { useParams } from 'react-router-dom';
 
 export const ForkUser = () =>{
    const { owner, repo } = useParams();
-//const [owner,repo] = ['krishnan472003','to-do-list']
+// const [owner,repo] = ['krishnan472003','simple-calculator']
   const handleClick = async() => {
     try {
       const response = await axios.post(`https://api.github.com/repos/${owner}/${repo}/forks`, null, {
         headers: {
-          Authorization: `token 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`, // Replace YOUR_GITHUB_ACCESS_TOKEN with your actual token
+          Authorization: `token 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`, // Replace YOUR_GITHUB_ACCESS_TOKEN with your actual token
         },
       });
       console.log('Repository forked successfully:', response.data.html_url);

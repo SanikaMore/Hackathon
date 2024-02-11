@@ -127,7 +127,7 @@ export default function Sidebar() {
             <MenuIcon />
           </IconButton>
           <Typography onClick={() => navigate("/")} style={{ cursor: "pointer"}} variant="h6" noWrap component="div">
-            CodeStudy
+            CoCreate+
           </Typography>
         </Toolbar>
       </AppBar>

@@ -99,7 +99,7 @@ const Signup = () => {
             <img id="company-logo" src={google} alt="GoogleLogo" />
           </div> */}
           <div className="company-title">
-            CodeStudy
+            CoCreate++
           </div>
           <div className="page-title">Create Account</div>
           <div className="signup-form">

@@ -99,7 +99,7 @@ const ResetPassword = () => {
             <img id="company-logo" src={google} alt="GoogleLogo" />
           </div> */}
           <div className="company-title">
-            CodeStudy
+            CoCreate+
           </div>
           <div className="reset-info-paragraph">
             We recommend to type in strong password of minimum length 8 with

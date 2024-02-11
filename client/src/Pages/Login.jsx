@@ -79,7 +79,7 @@ const Login = () => {
             <img id="company-logo" src={google} alt="GoogleLogo" />
           </div> */}
           <div className="company-title">
-            CodeStudy
+            CoCreate+
           </div>
           <div className="page-title">Sign in</div>
           <div className="signup-form">

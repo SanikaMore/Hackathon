@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 function GitHubCommits() {
   const [commits, setCommits] = useState([]);
   const {owner,repo} = useParams();
-  const token = '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';
+  const token = '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';
 
   useEffect(() => {
     const fetchCommits = async () => {

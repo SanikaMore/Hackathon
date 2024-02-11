@@ -74,7 +74,7 @@ const EmailOnly = () => {
         {/* <div className="company-title">
           <img id="company-logo" src={google} alt="GoogleLogo" />
         </div> */}
-        <div className="company-title">CodeStudy</div>
+        <div className="company-title">CoCreate+</div>
         <div className="info-paragraph">
           An verification mail will be sent to the email provided by you. Please
           reset your password within 2 hours of time limit otherwise link will

@@ -327,6 +327,9 @@ const Discuss = () => {
           </div>
         </div>
       </div>
+
+      <div class="container">
+      </div>
       <Chatbot />
     </div>
   );
