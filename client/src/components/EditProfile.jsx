@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-// import axios from 'axios';
-
+import axios from 'axios'
 import AddCircleRoundedIcon from "@mui/icons-material/AddCircleRounded";
 import VisibilityRoundedIcon from "@mui/icons-material/VisibilityRounded";
 import VisibilityOffRoundedIcon from "@mui/icons-material/VisibilityOffRounded";
@@ -8,7 +7,6 @@ import VisibilityOffRoundedIcon from "@mui/icons-material/VisibilityOffRounded";
 import { useUpdateUserProfileMutation } from "../Services/AppApi";
 
 import { useSelector } from "react-redux";
-import axios from "axios";
 import "../style/EditProfile.css";
 import { BootstrapTooltip } from "./Navbar";
 import {

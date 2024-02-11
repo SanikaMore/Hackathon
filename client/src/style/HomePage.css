@@ -4,7 +4,7 @@
     align-items: center;
     position: relative;
     margin-top: 4% !important;
-    margin-left: 12%;
+    margin-left: 7%;
     width: 100% !important;
 }
 
@@ -214,12 +214,12 @@
     padding: 20px;
     display: flex;
     align-items: center;
-    max-width: 300px;
+    max-width: 250px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease-in-out;
     position: relative;
     height: 50vh;
-    width: 20vw;
+    width: 30vw;
   }
   
   .github-repo-card:hover {
@@ -241,6 +241,14 @@
     margin-bottom: 8px;
     font-size: 1.2rem;
     color: #333;
+    text-decoration: none;
+  }
+
+  .github-repo-card h4 {
+    margin-bottom: 8px;
+    font-size: 0.8rem;
+    color: #333;
+    text-decoration: none;
   }
   
   .github-repo-card p {
@@ -256,28 +264,28 @@
     padding: 5px 10px;
     color: white;
     border-radius: 5px;
-    font-weight: bold;
+    
     margin-top: 5px;
   }
   
   /* Add specific styles for each color */
   .tag.green {
-    background-color: #4caf50; /* Green */
+    background-color: #94dc97; /* Green */
   }
   
   .tag.yellow {
-    background-color: #ffeb3b; /* Yellow */
+    background-color: #dad396; /* Yellow */
   }
   
   .tag.red {
-    background-color: #f44336; /* Red */
+    background-color: #ba6660; /* Red */
   }
   .language-buttons {
     margin-top: 10px;
   }
   
   .language-button {
-    background-color: #3498db;
+    background-color: #4da4de;
     color: #fff;
     padding: 5px 10px;
     margin-right: 5px;

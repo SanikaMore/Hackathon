@@ -39,7 +39,6 @@ import ThumbUpOffAltOutlinedIcon from "@mui/icons-material/ThumbUpOffAltOutlined
 import ThumbDownAltOutlinedIcon from "@mui/icons-material/ThumbDownAltOutlined";
 import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
 import ThumbDownAltIcon from "@mui/icons-material/ThumbDownAlt";
-
 import { BootstrapTooltip } from "../components/Navbar";
 import { useSelector } from "react-redux";
 
@@ -344,6 +343,7 @@ const HomePage = () => {
                 ))}
               </div>
             </div>
+            
             <div className="search-by-votes">
               <FormControl fullWidth>
                 <InputLabel id="sort-posts-by-dropdown">Sort By</InputLabel>
@@ -377,8 +377,8 @@ const HomePage = () => {
       <div className="github-repo-card" key={repo._id}>
                                 <Link to ={`/repo/${repo.owner}/${repo.repo_name}`}>
         <div>
-          <h3>{repo.owner}</h3>
-          <p>{repo.repo_name}</p>
+          <h4>{repo.owner}</h4>
+          <h3>{repo.repo_name}</h3>
           <p>Ease of Project: {repo.easeOfProject}</p>
           <div className="tag" style={{ backgroundColor: getTagColor(repo.easeOfProject) }}>
             {getTagLabel(repo.easeOfProject)}
