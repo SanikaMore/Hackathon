@@ -191,7 +191,7 @@ const EditProfile = () => {
         })
         .catch(error => {
           console.error('Error:', error);
-        });}
+        });
 
 
       setDisableSubmit(false);
