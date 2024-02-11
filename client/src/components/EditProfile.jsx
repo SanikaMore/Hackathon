@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import axios from 'axios'
 import AddCircleRoundedIcon from "@mui/icons-material/AddCircleRounded";
 import VisibilityRoundedIcon from "@mui/icons-material/VisibilityRounded";
 import VisibilityOffRoundedIcon from "@mui/icons-material/VisibilityOffRounded";
@@ -179,13 +179,14 @@ const EditProfile = () => {
       }
 
       console.log(JSON.stringify(obj))
+      if(false){
       axios.post("localhost", obj)
         .then(response => {
           console.log('Response:', response.data);
         })
         .catch(error => {
           console.error('Error:', error);
-        });
+        });}
 
 
       setDisableSubmit(false);

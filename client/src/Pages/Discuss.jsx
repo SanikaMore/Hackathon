@@ -11,10 +11,14 @@ import {
   useFetchTagsMutation,
 } from "../Services/AppApi";
 
+import Chatbot from '../components/Chatbot'
 import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 
 import "../style/Discuss.css";
+import { Fab } from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
+import axios from "axios";
 
 import CloseRounded from "@mui/icons-material/CloseRounded";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
@@ -65,6 +69,7 @@ const Discuss = () => {
 
   const [fetchAllDoubtsFunction] = useFetchAllDoubtsMutation();
   const [fetchTagsFunction] = useFetchTagsMutation();
+  const [isButtonClicked, setIsButtonClicked] = useState(false);
 
   const navigate = useNavigate();
 
@@ -108,6 +113,26 @@ const Discuss = () => {
     );
   }, [selectedTags, allDoubts, searchField]);
 
+  const handleButtonClick = () => {
+  console.log('Before API call');
+  if (!isButtonClicked) {
+    setIsButtonClicked(true);
+
+    axios.get('http://127.0.0.1:5000/')
+      .then(response => {
+        console.log('API Response:', response.data);
+      })
+      .catch(error => {
+        console.error('API Error:', error);
+      })
+      .finally(() => {
+        setIsButtonClicked(false);
+      });
+  }
+  console.log('After API call');
+};
+
+  
   return (
     <div className="discuss-outer">
       <div className="discuss-wrapper">
@@ -298,6 +323,7 @@ const Discuss = () => {
           </div>
         </div>
       </div>
+      <Chatbot />
     </div>
   );
 };

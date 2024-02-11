@@ -9,7 +9,7 @@ import ForgotPassword from "./Pages/ForgotPassword";
 import ResetPassword from "./Pages/ResetPassword";
 // import CreatePost from "./components/CreatePost";
 import Recommendations from './Pages/Recommendations';
-
+import Chatbot from "./components/Chatbot";
 import { AppContext } from "./context/AppContext";
 import { useSelector } from "react-redux";
 
@@ -22,6 +22,8 @@ import Discuss from "./Pages/Discuss";
 import EditProfile from "./components/EditProfile";
 import DisplayDoubt from "./Pages/DisplayDoubt";
 
+import ChatComponent from "./Pages/ChatComponent";
+
 function App() {
   const user = useSelector((state) => state?.user);
   const [status, setStatus] = useState(false);
@@ -31,7 +33,9 @@ function App() {
       <BrowserRouter>
         <Sidebar />
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<ChatComponent />} />
+
+          
 
           {!user && <Route path="/signup" element={<Signup />} />}
           {user && <Route path="/signup" element={<HomePage />} />}
@@ -60,6 +64,7 @@ function App() {
 
           <Route path="/response" element={<Response />} />
         </Routes>
+        <Chatbot />
       </BrowserRouter>
     </AppContext.Provider>
   );
