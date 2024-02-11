@@ -9,7 +9,6 @@ import ForgotPassword from "./Pages/ForgotPassword";
 import ResetPassword from "./Pages/ResetPassword";
 // import CreatePost from "./components/CreatePost";
 import Recommendations from './Pages/Recommendations';
-import Chatbot from "./components/Chatbot";
 import { AppContext } from "./context/AppContext";
 import { useSelector } from "react-redux";
 
@@ -33,7 +32,7 @@ function App() {
       <BrowserRouter>
         <Sidebar />
         <Routes>
-          <Route path="/" element={<ChatComponent />} />
+          <Route path="/" element={<HomePage />} />
 
           
 
@@ -66,7 +65,7 @@ function App() {
 
           <Route path="/response" element={<Response />} />
         </Routes>
-        <Chatbot />
+       
       </BrowserRouter>
     </AppContext.Provider>
   );

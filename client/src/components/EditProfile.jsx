@@ -7,7 +7,6 @@ import VisibilityOffRoundedIcon from "@mui/icons-material/VisibilityOffRounded";
 import { useUpdateUserProfileMutation } from "../Services/AppApi";
 
 import { useSelector } from "react-redux";
-import axios from "axios";
 import "../style/EditProfile.css";
 import { BootstrapTooltip } from "./Navbar";
 import {
