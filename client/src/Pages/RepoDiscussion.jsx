@@ -14,7 +14,7 @@ import {
   import GitHubCommits from "../components/recentCommits";
   import { styled, alpha } from "@mui/material/styles";
   import InputBase from "@mui/material/InputBase";
-  
+  import {DisplayGithubInfo} from "../components/DisplayGithubInfo"
   import "../style/Discuss.css";
   
   import CloseRounded from "@mui/icons-material/CloseRounded";
@@ -277,7 +277,9 @@ import {
                     key={tag}
                     label={tag}
                   />
+
                 ))}
+ <DisplayGithubInfo/>
               </div>
             </div>
           </div>
