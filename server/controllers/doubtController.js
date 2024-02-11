@@ -65,7 +65,7 @@ exports.addReply = catchAsync(async (req, res) => {
   try {
     const _doubt = await Doubt.findById(doubt._id);
     const newReply = await Reply.create({
-      creator: user._id,
+      // creator: user._id,
       reply: reply,
       replyToPost: _doubt._id,
       createdAt: Date.now(),

@@ -7,6 +7,7 @@ import {
 } from "../Services/AppApi";
 import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
+import { Link } from 'react-router-dom';
 import Recommendations from "../components/Recommendations";
 import CloseRounded from "@mui/icons-material/CloseRounded";
 import {
@@ -374,6 +375,7 @@ const HomePage = () => {
     )
     .map(repo => (
       <div className="github-repo-card" key={repo._id}>
+                                <Link to ={`/repo/${repo.owner}/${repo.repo_name}`}>
         <div>
           <h3>{repo.owner}</h3>
           <p>{repo.repo_name}</p>
@@ -389,6 +391,8 @@ const HomePage = () => {
             ))}
           </div>
         </div>
+              </Link>
+
       </div>
     ))}
 </div>
@@ -396,26 +400,16 @@ const HomePage = () => {
             
 
 
-
-
-
-
-
-
-
-
-
-
             {posts.length === 0 ? (
               <p className="no-posts-found"></p>
             ) : (
               posts?.map(({ postData, ownerInfo }, idx) => (
-                <Card className="card-outer" key={idx}>
+                <Card className="card-outer" key={idx} >
                   <CardHeader
                     className="post-header"
                     title={postData.title.toUpperCase()}
                     subheader={`by ${ownerInfo.name}`}
-                    avatar={
+                      avatar={
                       <img
                         style={{
                           width: "50px",

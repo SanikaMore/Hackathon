@@ -2,6 +2,7 @@ const express = require("express");
 const userRoutes = require("./routes/userRoutes");
 const postRoutes = require("./routes/postRoutes");
 const doubtRoutes = require("./routes/doubtRoutes");
+const repoDoubts = require('./routes/repoDoubts')
 const bodyParser = require("body-parser");
 const AppError = require("./utils/appError");
 const cookieParser = require("cookie-parser");
@@ -42,6 +43,7 @@ app.use("/user", userRoutes);
 app.use("/post", postRoutes);
 app.use("/doubts", doubtRoutes);
 app.use("/user",getCommitsByUserAndRepo(octokit));
+app.use("/repoDoubts", repoDoubts);
 
 app.get("/tags", async (req, res) => {
   res.status(200).json(tags);

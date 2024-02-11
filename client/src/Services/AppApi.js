@@ -124,6 +124,21 @@ const appApi = createApi({
         body: data,
       }),
     }),
+    fetchAllRepoDoubts: builder.mutation({
+      query: (data) => ({
+        url: "/repoDoubts/fetch",
+        method: "post",
+        body:data,
+      }),
+    }),
+
+    createRepoDoubt: builder.mutation({
+      query: (data) => ({
+        url: "/repoDoubts/create",
+        method: "post",
+        body: data,
+      }),
+    }),
 
     updateUserProfile: builder.mutation({
       query: (data) => ({
@@ -207,6 +222,9 @@ export const {
   useAddVoteToReplyMutation,
   useSortRepliesMutation,
   useDeleteDoubtMutation,
+  useFetchAllRepoDoubtsMutation,
+  useCreateRepoDoubtMutation
+
 } = appApi;
 export default appApi;
 

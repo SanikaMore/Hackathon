@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
 
-
 const githubRepoSchema = new mongoose.Schema({
   owner: {
     type: String,
@@ -34,8 +33,7 @@ const githubRepoSchema = new mongoose.Schema({
   createdAt: {
     type: Date,
     default: Date.now(),
-  },
-
+  }
   // Other fields if needed...
 
 });
