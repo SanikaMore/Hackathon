@@ -1,0 +1,81 @@
+.animation-container {
+  
+  top: 50%;
+  right: 69px;
+  display: relative;
+  width: 10px;
+  height: 15px;
+}
+
+.container {
+  position: relative;
+  top: 5px;
+
+  height: 100px;
+  width: 60px;
+  transform: scale(0.3) translateX(0) scaleY(0.4);
+}
+
+.y-axis-container {
+  animation: bounce 1.3s infinite ease-in-out;
+}
+
+/* Adjusted dimensions for coins */
+.coin,
+.side-coin,
+.side {
+  position: absolute;
+  height: 100px;
+  width: 50px;
+}
+
+.coin {
+  
+  background: gold;
+  border-radius: 100%;
+  overflow: hidden;
+}
+
+
+
+/* Adjusted dimensions for shine */
+.shine {
+  width: 120px;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.65);
+  transform: rotate(25deg);
+  animation: shine 1.3s infinite;
+}
+
+
+@keyframes bounce {
+  20% {
+    animation-timing-function: ease-out;
+    transform: translateY(-30px);
+  }
+
+  50% {
+    animation-timing-function: ease-out;
+    transform: translateY(-40px);
+  }
+}
+
+@keyframes scaling {
+  20% {
+    transform: scale(0.6);
+  }
+
+  50% {
+    transform: scale(0.5);
+  }
+}
+
+@keyframes shine {
+  20% {
+    transform: rotate(25deg) translateY(200px);
+  }
+
+  100% {
+    transform: rotate(25deg) translateY(200px);
+  }
+}

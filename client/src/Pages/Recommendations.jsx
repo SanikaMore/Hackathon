@@ -18,7 +18,20 @@ const Recommendations = () => {
 
         const response = await axios.get(`http://127.0.0.1:5000/api/recommendations/${userId}`);
         console.log('API Response:', response.data);
-        setRecommendations(response.data);
+
+        // Sorting the recommendations by score in descending order
+        const sortedRecommendations = Object.entries(response.data).sort((a, b) => b[1] - a[1]);
+
+        // Taking only the top 5 recommendations
+        const top5Recommendations = sortedRecommendations.slice(0, 5);
+
+        // Creating an object from the top 5 recommendations
+        const top5RecommendationsObj = Object.fromEntries(top5Recommendations);
+
+        setRecommendations(top5RecommendationsObj);
+        
+
+        
       } catch (error) {
         console.error('Error fetching recommendations:', error);
       }
@@ -29,7 +42,7 @@ const Recommendations = () => {
 
   return (
     <div>
-      <h2>Recommendations for User {userId}</h2>
+      <h2>Top 5 Recommendations for User {userId}</h2>
       <ul>
         {Object.entries(recommendations).map(([tech, score]) => (
           <li key={tech}>{tech}: {score}</li>

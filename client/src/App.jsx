@@ -23,7 +23,7 @@ import EditProfile from "./components/EditProfile";
 import DisplayDoubt from "./Pages/DisplayDoubt";
 
 import ChatComponent from "./Pages/ChatComponent";
-
+import RepoDiscussion from "./Pages/RepoDiscussion"
 function App() {
   const user = useSelector((state) => state?.user);
   const [status, setStatus] = useState(false);
@@ -57,6 +57,8 @@ function App() {
 
           <Route path="/discuss" element={<Discuss />} />
           <Route path="/doubt" element={<DisplayDoubt />} />
+          <Route path="/repo/:owner/:repo" element={<RepoDiscussion />} />
+
 
           <Route path="/forgot" element={<ForgotPassword />} />
           <Route path="/new/password" element={<ResetPassword />} />

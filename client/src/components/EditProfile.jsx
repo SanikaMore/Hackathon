@@ -7,7 +7,7 @@ import VisibilityOffRoundedIcon from "@mui/icons-material/VisibilityOffRounded";
 import { useUpdateUserProfileMutation } from "../Services/AppApi";
 
 import { useSelector } from "react-redux";
-
+import axios from "axios";
 import "../style/EditProfile.css";
 import { BootstrapTooltip } from "./Navbar";
 import {
@@ -169,6 +169,8 @@ const EditProfile = () => {
           autoHideDuration: 3000,
         });
       let obj = {}
+       
+      
       let skills = data.data.technicalSkills
       // console.log(JSON.stringify()+"=============") 
       for (let i = 0; i < predefinedTags.length; i++) {
@@ -178,9 +180,12 @@ const EditProfile = () => {
         obj[skills[i]] = 1;
       }
 
+      //object made after updating skills
+
       console.log(JSON.stringify(obj))
-      if(false){
-      axios.post("localhost", obj)
+
+     
+      axios.get(`http://127.0.0.1:8000/ap/recommendations/`)
         .then(response => {
           console.log('Response:', response.data);
         })
