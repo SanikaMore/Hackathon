@@ -40,7 +40,6 @@ import ThumbUpOffAltOutlinedIcon from "@mui/icons-material/ThumbUpOffAltOutlined
 import ThumbDownAltOutlinedIcon from "@mui/icons-material/ThumbDownAltOutlined";
 import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
 import ThumbDownAltIcon from "@mui/icons-material/ThumbDownAlt";
-
 import { BootstrapTooltip } from "../components/Navbar";
 import { useSelector } from "react-redux";
 
@@ -345,6 +344,7 @@ const HomePage = () => {
                 ))}
               </div>
             </div>
+            
             <div className="search-by-votes">
               <FormControl fullWidth>
                 <InputLabel id="sort-posts-by-dropdown">Sort By</InputLabel>
