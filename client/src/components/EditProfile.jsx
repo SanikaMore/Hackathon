@@ -93,13 +93,13 @@ const EditProfile = () => {
       });
       return;
     }
-    if (githubLink.length && !githubLink.includes("https://github.com")) {
-      enqueueSnackbar("Invalid Github link!", {
-        variant: "error",
-        autoHideDuration: 3000,
-      });
-      return;
-    }
+    // if (githubLink.length && !githubLink.includes("https://github.com")) {
+    //   enqueueSnackbar("Invalid Github link!", {
+    //     variant: "error",
+    //     autoHideDuration: 3000,
+    //   });
+    //   return;
+    // }
     if (
       linkedInLink.length &&
       !(

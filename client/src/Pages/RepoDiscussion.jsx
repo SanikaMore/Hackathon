@@ -16,7 +16,7 @@ import {
   import InputBase from "@mui/material/InputBase";
   import {DisplayGithubInfo} from "../components/DisplayGithubInfo"
   import "../style/Discuss.css";
-  
+  import { useSelector } from "react-redux";
   import CloseRounded from "@mui/icons-material/CloseRounded";
   import AddRoundedIcon from "@mui/icons-material/AddRounded";
   import WhatshotRoundedIcon from "@mui/icons-material/WhatshotRounded";
@@ -27,6 +27,7 @@ import {
   import { useNavigate } from "react-router-dom";
   import VisibilityRounded from "@mui/icons-material/VisibilityRounded";
   import DisplayRepoPostComponent from "../components/DisplayRepoPostComponent";
+import {ForkUser} from "../components/ForkUser";
   // import parse from "html-react-parser";
   
   const Search = styled("div")(({ theme }) => ({
@@ -58,6 +59,8 @@ import {
     const [doubts, setDoubts] = useState([]);
     const [allDoubts, setAllDoubts] = useState([]);
     const [searchField, setSearchField] = useState("");
+    const user = useSelector((state) => state?.user);
+
   
     const [criteria, setCriteria] = useState("newest_to_oldest");
     const [openPostDialog, setOpenPostDialog] = useState(false);
@@ -84,7 +87,6 @@ import {
         }
       });
   
-     
     }, [fetchRepoDoubts]);
   
   
@@ -279,7 +281,8 @@ import {
                   />
 
                 ))}
- <DisplayGithubInfo/>
+                <DisplayGithubInfo/>
+            <ForkUser/>
               </div>
             </div>
           </div>
