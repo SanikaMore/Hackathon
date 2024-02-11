@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
+import Roadmap from "./Pages/Roadmap";
 import Signup from "./Pages/Signup";
 import Login from "./Pages/Login";
 import Response from "./Pages/Response";
@@ -54,7 +54,7 @@ function App() {
           <Route path="/discuss" element={<Discuss />} />
           <Route path="/doubt" element={<DisplayDoubt />} />
           <Route path="/repo/:owner/:repo" element={<RepoDiscussion />} />
-
+          <Route path="/roadmap" element={<Roadmap />} />
 
           <Route path="/forgot" element={<ForgotPassword />} />
           <Route path="/new/password" element={<ResetPassword />} />

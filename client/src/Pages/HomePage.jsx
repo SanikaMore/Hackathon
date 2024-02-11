@@ -1,6 +1,7 @@
 import axios from "axios";
 import SearchIcon from "@mui/icons-material/Search";
 import React, { useEffect, useState } from "react";
+
 import {
   useFetchTagsMutation,
   useFetchAllPostsMutation,
@@ -363,7 +364,10 @@ const HomePage = () => {
           </div>
         </div>
 
-        
+        <Recommendations userId={userId}  />
+
+        <h2>Other Famous Open Source Projects</h2>
+
         
         <div className="post-outer">
           <div className="post-wrapper">
@@ -377,12 +381,13 @@ const HomePage = () => {
       <div className="github-repo-card" key={repo._id}>
                                 <Link to ={`/repo/${repo.owner}/${repo.repo_name}`}>
         <div>
-          <h4>{repo.owner}</h4>
-          <h3>{repo.repo_name}</h3>
-          <p>Ease of Project: {repo.easeOfProject}</p>
+        {/* <p>Ease of Project: {repo.easeOfProject}</p> */}
           <div className="tag" style={{ backgroundColor: getTagColor(repo.easeOfProject) }}>
             {getTagLabel(repo.easeOfProject)}
           </div>
+          <h4>{repo.owner}</h4>
+          <h3>{repo.repo_name}</h3>
+          
           <div className="language-buttons">
             {repo.languageUsed.map((language, index) => (
               <button className="language-button" key={index}>
@@ -685,7 +690,7 @@ const HomePage = () => {
         </div>
         
 
-        <Recommendations userId={userId}  />
+       
       {/* <h2>GitHub Repositories with Matching Languages</h2>
       <div className="github-repo-cards-rec">
         {githubRepos

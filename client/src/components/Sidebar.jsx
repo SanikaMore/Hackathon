@@ -67,6 +67,7 @@ const AppBar = styled(MuiAppBar, {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
+  backgroundColor: "black", 
   ...(open && {
     marginLeft: drawerWidth,
     width: `calc(100% - ${drawerWidth}px)`,
@@ -156,7 +157,7 @@ export default function Sidebar() {
                   justifyContent: "center",
                 }}
               >
-                <HomeRounded className="customized_blue font_verdana" />
+                <HomeRounded className="customized_black font_verdana" />
               </ListItemIcon>
               <ListItemText primary={"Home"} sx={{ opacity: open ? 1 : 0 }} />
             </ListItemButton>

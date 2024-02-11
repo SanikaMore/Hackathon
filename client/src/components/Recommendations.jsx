@@ -97,12 +97,17 @@ const Recommendations = ({ userId }) => {
 
   return (
     <div>
-      <h2>Top 5 Recommendations for You</h2>
+      <h2>Top 5 Skills for You to Explore</h2>
       <ul>
         {Object.entries(recommendations).map(([tech, score]) => (
-          <li key={tech}>{tech}: {score}</li>
+         <div class="card_tech" key={tech}>
+         <p class="tech">{tech}</p>
+         
+       </div>
+
         ))}
       </ul>
+      <h2>Recommended Repositories for you to Explore Open Source</h2>
 
       {/* Display filtered repository cards */}
       <div className="github-repo-cards">
@@ -111,14 +116,13 @@ const Recommendations = ({ userId }) => {
         {filteredRepos.map(repo => (
           <div className="github-repo-card" key={repo._id}>
             <div>
-              <h3>{repo.owner}</h3>
-              <img className="coin_img" src='/coin.png' alt="Coin Image" />
-              
-              <p>{repo.repo_name}</p>
-              <p>Ease of Project: {repo.easeOfProject}</p>
-              <div className="tag" style={{ backgroundColor: getTagColor(repo.easeOfProject) }}>
+            <div className="tag" style={{ backgroundColor: getTagColor(repo.easeOfProject) }}>
                 {getTagLabel(repo.easeOfProject)}
               </div>
+              <h3>{repo.owner}</h3>
+              
+              <p>{repo.repo_name}</p>
+              
               <div className="language-buttons">
                 {repo.languageUsed.map((language, index) => (
                   <button className="language-button" key={index}>
@@ -126,6 +130,9 @@ const Recommendations = ({ userId }) => {
                   </button>
                 ))}
               </div>
+              <img className="coin_img" src='/coin.png' alt="Coin Image" />
+              <h3 className='coin_earned'>Earn {repo.coinsEarned} coins </h3>
+              
             </div>
           </div>
         ))}
