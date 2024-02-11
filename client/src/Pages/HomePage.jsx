@@ -121,9 +121,12 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 const HomePage = () => {
   const user = useSelector((state) => state?.user?.data);
   const userToken = useSelector((state) => state?.user?.token);
+  const [topRecommendations, setTopRecommendations] = useState({});
 
   const [tags, setTags] = useState([]);
   const [selectedTags, setSelectedTags] = useState([]);
+
+  const [selectedLangs, setselectedLangs] = useState([]);
 
   const [posts, setPosts] = useState([]);
   const [allPostsData, setAllPostsData] = useState([]);
@@ -216,7 +219,10 @@ const HomePage = () => {
     setLoading(false);
   }, [selectedTags, allPostsData, searchField, sortCriteria]);
 
-  const userId = '85';
+  const randomUserId = Math.floor(Math.random() * (100 - 90 + 1) + 90);
+
+  
+  const userId = randomUserId.toString();
 
   useEffect(() => {
     axios.get('http://localhost:5000/post/getGithub')
@@ -390,6 +396,8 @@ const HomePage = () => {
       </div>
     ))}
 </div>
+
+            
 
 
             {posts.length === 0 ? (
@@ -677,9 +685,43 @@ const HomePage = () => {
         </div>
         
 
-        <Recommendations userId={userId}/>
-      </div>
+        <Recommendations userId={userId}  />
+      {/* <h2>GitHub Repositories with Matching Languages</h2>
+      <div className="github-repo-cards-rec">
+        {githubRepos
+          .filter(repo => {
+            // Check if at least two languages of the current repo are in the top 5 recommendations
+            const matchingLanguagesCount = repo.languageUsed.filter(language => topRecommendations[language]).length;
+            return matchingLanguagesCount >= 1;
+          })
+          .map(repo => (
+            <div className="github-repo-card-rec" key={repo._id}>
+               <div>
+          <h3>{repo.owner}</h3>
+          <p>{repo.repo_name}</p>
+          <p>Ease of Project: {repo.easeOfProject}</p>
+          <div className="tag" style={{ backgroundColor: getTagColor(repo.easeOfProject) }}>
+            {getTagLabel(repo.easeOfProject)}
+          </div>
+          <div className="language-buttons">
+            {repo.languageUsed.map((language, index) => (
+              <button className="language-button" key={index}>
+                {language}
+              </button>
+            ))}
+          </div>
+        </div>
+
+            </div>
+          ))}
+      </div> */}
     </div>
+  
+
+
+        
+      </div>
+    
   );
 };
 
